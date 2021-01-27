@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <h1> Update Leads : {{lead.first_name}} {{lead.last_name}} </h1>
+        <form method="post">
+        {% csrf_token %}
+          {{form.as_p}}
+          <button type="submit">Update</button>
+        </form>
+    </body>
+</html>
