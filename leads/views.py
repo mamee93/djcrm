@@ -1,7 +1,17 @@
 from django.shortcuts import render, redirect
 from .models import Lead,Agent
 from .forms import LeadModelForm
+from django.views.generic import TemplateView
+
+class LandingPage(TemplateView):
+    template_name = "landing.html"
+
 # Create your views here.
+
+def landing_page(request):
+    leads = Lead.objects.all()
+    return  render(request, 'landing.html', {'leads':leads})
+
 def lead_list(request):
     leads = Lead.objects.all()
     return  render(request, 'leads/lead_list.html', {'leads':leads})
@@ -36,7 +46,10 @@ def lead_update(request,pk):
     return  render(request, 'leads/lead_update.html', {'form':form,'lead':lead,})
 
 
-
+def lead_delete(request,pk):
+    lead = Lead.objects.get(id=pk)
+    lead.delete()
+    return redirect("/leads")
 
 
 
